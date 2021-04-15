@@ -28,11 +28,11 @@ class BonusServiceTest {
                     "'unregistered user, bonus over limit',100000060,true,500"
             }
     )
-    void shouldCalculate2(String test, long amount, boolean registered, long expected) {
+    void shouldCalculate2(String test, long amount, boolean unregistered, long expected) {
         BonusService service = new BonusService();
 
         // вызываем целевой метод:
-        long actual = service.calculate(amount, registered);
+        long actual = service.calculate(amount, unregistered);
 
         // производим проверку (сравниваем ожидаемый и фактический):
         assertEquals(expected, actual);
