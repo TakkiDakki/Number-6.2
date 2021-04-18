@@ -1,0 +1,4 @@
+@CsvSource(value="'registered user, bonus under limit',100060,true,30")
+@CsvSource(value="'registered user, bonus over limit',100000060,true,500")
+@CsvSource(value="'unregistered user, bonus under limit',100060,true,30")
+@CsvSource(value="'unregistered user, bonus over limit',100000060,true,500")
