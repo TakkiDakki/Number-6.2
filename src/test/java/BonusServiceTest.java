@@ -1,17 +1,14 @@
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BonusServiceTest {
     @ParameterizedTest
-    @CsvSource(
-            value={
-                    "'registered user, bonus under limit',100060,true,30",
-                    "'registered user, bonus over limit',100000060,true,500"
-            }
-    )
-    void shouldCalculate(String test, long amount, boolean registered, long expected) {
+    @CsvFileSource(resources = "/data.csv")
+
+       void shouldCalculate(String test, long amount, boolean registered, long expected) {
         BonusService service = new BonusService();
 
         // вызываем целевой метод:
@@ -21,21 +18,6 @@ class BonusServiceTest {
         assertEquals(expected, actual);
     }
 
-    @ParameterizedTest
-    @CsvSource(
-            value={
-                    "'unregistered user, bonus under limit',100060,true,30",
-                    "'unregistered user, bonus over limit',100000060,true,500"
-            }
-    )
-    void shouldCalculate2(String test, long amount, boolean unregistered, long expected) {
-        BonusService service = new BonusService();
 
-        // вызываем целевой метод:
-        long actual = service.calculate(amount, unregistered);
-
-        // производим проверку (сравниваем ожидаемый и фактический):
-        assertEquals(expected, actual);
-    }
 }
 
